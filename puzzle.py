@@ -1,4 +1,4 @@
-from queue import PriorityQueue
+import heapq
 
 class Board:
     ## initialize the class
@@ -7,6 +7,9 @@ class Board:
         self.parent = parent
         self.blankPos = self.findBlankPos()
         self.cost = cost
+    
+    def __lt__(self, other):
+        return self.cost < other.cost
 
     ## get a list of the boards of all the possible next moves
     def successorStates(self):
@@ -57,25 +60,25 @@ def printBoard(board):
     print("--------")
 
 
-expUCS = 0
+
 def uniformCostSearch(initial):
-    frontier = PriorityQueue()
-    explored = []
+    frontier = []
+    heapq.heappush(frontier, (initial.cost, initial))
+    explored = set()
 
-    frontier.put((initial.getCost(),initial))
+    frontier.append((initial.getCost(),initial))
 
-    while(not frontier.empty()):
-        currentState = frontier.queue[0]
+    while(frontier):
+        _, state = heapq.heappop(frontier)
 
-        if(currentState[1].isGoal()):
-            return currentState[1]
+        if(state.isGoal()):
+            return state
 
-        explored.append(currentState[1])
+        explored.add(state)
 
-        for nextState in currentState[1].successorStates():
-            if(nextState in explored):
-                frontier.put((nextState.getCost(), nextState))
-                expUCS+=1
+        for nextState in state.successorStates():
+            if(nextState not in explored and (nextState.cost, nextState) not in frontier):
+                heapq.heappush(frontier, (nextState.cost, nextState))
 
     return None
 
@@ -84,16 +87,13 @@ def uniformCostSearch(initial):
 
 
 if __name__ == "__main__":
-    initial_board = [[1,2,3],[4,5,6],[0,7,8]]
+    initial_board = [[0,1,3],[4,2,5],[7,8,6]]
     initial_state = Board(initial_board,None,[0,0],0)
 
     print("\nThe original board:\n")
     printBoard(initial_state.getBoard())
 
     boards = initial_state.successorStates()
-    
-    # for i in boards:
-    #     printBoard(i.getBoard())
 
     solution = uniformCostSearch(initial_state)
     print("\n\n8-puzzle solution with UCS algorithm! \n")
@@ -108,7 +108,7 @@ if __name__ == "__main__":
         path.reverse()
 
         for i in range(len(path)):
-            print("\nStep "+ i + ":")
+            print("\nStep "+ str(i) + ":")
             printBoard(path[i].getBoard())
 
 
