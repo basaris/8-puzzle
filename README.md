@@ -1,14 +1,14 @@
 # Algorithm that solves the 8-puzzle
 
-## What is the 8-puzzle game?
+
+### What is the 8-puzzle game?
 
 It is a game of 8 numbered tiles and one empty tile like this:
 
--------
-|4|7|1|
-|3|2| |
-|5|8|9|
--------
+| 4 | 7 | 1 |
+| 3 | 2 |   |
+| 5 | 8 | 9 |
+
 
 You can move only the tiles that are very next to the empty tile, Up, Down, Right and Left. So one possible move to the example above is the following:
 
