@@ -27,3 +27,10 @@ The game ends when every tile is in the correct position like the board bellow:
 | - | - | - |
 | 4 | 5 | 6 |
 | 7 | 8 |   |
+
+
+1. With the Uniform Cost Search Algorithm (UCS) 
+
+We created the class `Board` that describes the board with all its methods (tile movement, goal board and a bunch of return methods). 
+The function `uniformCostSearch` is the one that counts the solving sequence from the initial state to the goal state. We define a priority queue 
+and a list of all the explored states. It visits all the possible states with a cost priority till it finds out the correct path to the goal state. 
