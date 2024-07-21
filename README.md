@@ -28,6 +28,7 @@ The game ends when every tile is in the correct position like the board bellow:
 | 4 | 5 | 6 |
 | 7 | 8 |   |
 
+### Methods
 
 1. With the Uniform Cost Search Algorithm (UCS) 
 
