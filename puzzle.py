@@ -2,10 +2,10 @@ from queue import PriorityQueue
 
 class Board:
     ## initialize the class
-    def __init__(self, board, parent, blankPos, cost):
+    def __init__(self, board, parent=None, blankPos=[0,0], cost=0):
         self.board = board
         self.parent = parent
-        self.blankPos = blankPos
+        self.blankPos = self.findBlankPos()
         self.cost = cost
 
     ## get a list of the boards of all the possible next moves
@@ -17,13 +17,20 @@ class Board:
             newX = self.blankPos[0]+direc[0]
             newY = self.blankPos[1]+direc[1]
             if(newX>=0 and newX<3 and newY>=0 and newY<3):
-                newBoard = self.board
+                newBoard = [row[:] for row in self.board] ##create a deepcopy
                 newBoard[self.blankPos[0]][self.blankPos[1]] = newBoard[newX][newY]
                 newBoard[newX][newY] = 0
                 successors.append(Board(newBoard, self, [newX,newY],self.cost+1))
 
         return successors
     
+
+    def findBlankPos(self):
+        for i in range(3):
+            for j in range(3):
+                if(self.board[i][j] == 0):
+                    return [i,j]
+        return [0,0]
 
     def getCost(self):
         return self.cost
@@ -78,10 +85,15 @@ def uniformCostSearch(initial):
 
 if __name__ == "__main__":
     initial_board = [[1,2,3],[4,5,6],[0,7,8]]
-    initial_state = Board(initial_board,None,[0,2],0)
+    initial_state = Board(initial_board,None,[0,0],0)
 
     print("\nThe original board:\n")
     printBoard(initial_state.getBoard())
+
+    boards = initial_state.successorStates()
+    
+    # for i in boards:
+    #     printBoard(i.getBoard())
 
     solution = uniformCostSearch(initial_state)
     print("\n\n8-puzzle solution with UCS algorithm! \n")
