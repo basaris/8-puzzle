@@ -8,6 +8,7 @@ It is a game of 8 numbered tiles and one empty tile like this:
 | 4 | 7 | 1 |
 | - | - | - |
 | 3 | 2 |   |
+| - | - | - |
 | 5 | 8 | 9 |
 
 
