@@ -11,7 +11,7 @@ class BoardAstar:
         self.heuristicCost = self.calculateManhattanDistance()
     
     def __lt__(self, other):
-        return self.cost < other.cost
+        return self.getTotalCost() < other.getTotalCost()
 
     ## get a list of the boards of all the possible next moves
     def successorStates(self):
