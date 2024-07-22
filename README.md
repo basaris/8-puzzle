@@ -28,8 +28,10 @@ The game ends when every tile is in the correct position like the board bellow:
 | 4 | 5 | 6 |
 | 7 | 8 |   |
 
-### Methods
 &nbsp;
+
+### Methods
+
 1. With the Uniform Cost Search Algorithm (UCS) 
 
 We created the class `Board` that describes the board with all its methods (tile movement, goal board and a bunch of return methods). 
