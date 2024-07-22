@@ -35,3 +35,7 @@ The game ends when every tile is in the correct position like the board bellow:
 We created the class `Board` that describes the board with all its methods (tile movement, goal board and a bunch of return methods). 
 The function `uniformCostSearch` is the one that counts the solving sequence from the initial state to the goal state. We define a priority queue 
 and a list of all the explored states. It visits all the possible states with a cost priority till it finds out the correct path to the goal state. 
+
+2. With the A-star method(A*)
+
+It counts the path the same way as before but it compares the manhattan distance from start to finish too. So the Total Cost is a little bit different because we add up the cost of the state and the heuristic cost which is the manhattan distance.
