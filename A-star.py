@@ -1,5 +1,6 @@
 import heapq
 
+
 class BoardAstar:
     ## initialize the class
     def __init__(self, board, parent=None, blankPos=[0,0], cost=0):
@@ -10,7 +11,7 @@ class BoardAstar:
         self.heuristicCost = self.calculateManhattanDistance()
     
     def __lt__(self, other):
-        return self.getTotalCost() < other.getTotalCost()
+        return self.cost < other.cost
 
     ## get a list of the boards of all the possible next moves
     def successorStates(self):
@@ -51,7 +52,7 @@ class BoardAstar:
         return self.cost
 
     def getTotalCost(self):
-        return self.cost + self.heuristicCost
+        return (self.cost + self.heuristicCost)
 
     def getBoard(self):
         return self.board
@@ -78,7 +79,7 @@ def printBoard(board):
 
 def Astar(initial):
     frontier = []
-    heapq.heappush(frontier, (initial.cost, initial))
+    heapq.heappush(frontier, (initial.getCost(), initial))
     explored = set()
 
     frontier.append((initial.getCost(),initial))
@@ -92,8 +93,15 @@ def Astar(initial):
         explored.add(state)
 
         for nextState in state.successorStates():
-            if(nextState not in explored and (nextState.cost, nextState) not in frontier):
-                heapq.heappush(frontier, (nextState.cost, nextState))
+            if(nextState not in explored and (nextState.getCost(), nextState) not in frontier):
+                heapq.heappush(frontier, (nextState.getCost(), nextState))
+            elif(nextState in frontier):
+                for state in frontier:
+                    if(state == nextState and state.getCost() > nextState.getCost()):
+                        frontier.remove(state)
+                        frontier.append(nextState.getCost(),nextState)
+                        break
+
 
     return None
 
@@ -103,15 +111,14 @@ def Astar(initial):
 
 if __name__ == "__main__":
     initial_board = [[0,1,3],[4,2,5],[7,8,6]]
-    initial_state = Board(initial_board,None,[0,0],0)
+    initial_state = BoardAstar(initial_board,None,[0,0],0)
 
     print("\nThe original board:\n")
     printBoard(initial_state.getBoard())
 
-    boards = initial_state.successorStates()
 
-    solution = uniformCostSearch(initial_state)
-    print("\n\n8-puzzle solution with UCS algorithm! \n")
+    solution = Astar(initial_state)
+    print("\n\n8-puzzle solution with A* algorithm! \n")
     finalCost = solution.getCost()
 
     if(solution != None):

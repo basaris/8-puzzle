@@ -93,8 +93,6 @@ if __name__ == "__main__":
     print("\nThe original board:\n")
     printBoard(initial_state.getBoard())
 
-    boards = initial_state.successorStates()
-
     solution = uniformCostSearch(initial_state)
     print("\n\n8-puzzle solution with UCS algorithm! \n")
     finalCost = solution.getCost()
