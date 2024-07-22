@@ -36,7 +36,8 @@ We created the class `Board` that describes the board with all its methods (tile
 The function `uniformCostSearch` is the one that counts the solving sequence from the initial state to the goal state. We define a priority queue 
 and a list of all the explored states. It visits all the possible states with a cost priority till it finds out the correct path to the goal state. 
 
-
+&nbsp;
+&nbsp;
 
 2. With the A-star method(A*)
 
