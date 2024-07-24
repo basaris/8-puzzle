@@ -44,3 +44,11 @@ and a list of all the explored states. It visits all the possible states with a 
 2. With the A-star method(A*)
 
 It counts the path the same way as before but it compares the manhattan distance from start to finish too. So the Total Cost is a little bit different because we add up the cost of the state and the heuristic cost which is the manhattan distance.
+
+&nbsp;
+
+### Run the java files
+
+1. Open cmd in the directory and run `javac *.java` as soon as you have java downloaded in your computer. 
+
+2. When the `.class` files will be downloaded in the directory you can run the command `java MainClass` and it will run with the example that I've provided.
