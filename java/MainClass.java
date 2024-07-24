@@ -1,5 +1,3 @@
-package core;
-
 import java.util.*;
 
 public class MainClass {
@@ -14,7 +12,6 @@ public class MainClass {
 	}
 	
 	
-	public static int expUCS = 0;
 	//the UCS algorithm for exercise 1.a.
 	public static Board uniformCostSearch(Board initial) {
 		PriorityQueue<Board> frontier = new PriorityQueue<>(Comparator.comparingInt(Board::getCost));
@@ -34,14 +31,12 @@ public class MainClass {
 			for(Board nextState : currentState.successorStates()) {
 				if(!explored.contains(nextState)) {
 					frontier.add(nextState);
-					expUCS++;
 				}
 			}
 		}
 		return null;
 	}
 	
-	public static int expAstar = 0;
 	//the A* algorithm for exercise 1.b.
 	public static BoardAstar Astar(BoardAstar initial) {
 		PriorityQueue<BoardAstar> frontier = new PriorityQueue<>(Comparator.comparingInt(BoardAstar::getTotalCost));
@@ -61,13 +56,11 @@ public class MainClass {
 			for(BoardAstar nextState : currentState.successorStates()) {
 				if(!explored.contains(nextState) && !frontier.contains(nextState)) {
 					frontier.add(nextState);
-					expAstar++;
 				}else if(frontier.contains(nextState)) {
 					for(BoardAstar state : frontier) {
 						if(state.equals(nextState) && state.getCost() > nextState.getCost()) {
 							frontier.remove(state);
 							frontier.add(nextState);
-							expAstar++;
 							break;
 						}
 					}
@@ -111,7 +104,6 @@ public class MainClass {
 		}
 		
 		System.out.println("\nThe final cost is:"+finalCost);
-		System.out.println("The total expansions were made:"+expUCS);
 		System.out.println("\n\n-----------------");
 		System.out.println("------ END ------");
 		System.out.println("-----------------");
@@ -141,7 +133,6 @@ public class MainClass {
 		
 
 		System.out.println("\nThe final cost is:"+finalCost);
-		System.out.println("The total expansions were made:"+expAstar);
 		System.out.println("\n\n-----------------");
 		System.out.println("------ END ------");
 		System.out.println("-----------------");

@@ -1,5 +1,3 @@
-package core;
-
 import java.util.*;
 
 public class BoardAstar {
@@ -19,7 +17,7 @@ public class BoardAstar {
 	
 	public List<BoardAstar> successorStates(){
 		List<BoardAstar> successors = new ArrayList<>();
-		int[][] directions = {{-1,-1},{-1,0},{-1,-1},{0,-1},{0,1},{1,-1},{1,0},{1,-1}};
+		int[][] directions = {{-1,0},{0,-1},{0,1},{1,0}};//all the possible moves
 		
 		for(int[] dir: directions) {
 			int newX = blankPos[0]+dir[0];
